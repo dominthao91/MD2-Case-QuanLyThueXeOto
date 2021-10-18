@@ -1,4 +1,4 @@
-package controller;
+package controller.client;
 
 public interface IGeneralClient <T>{
     void showAll();

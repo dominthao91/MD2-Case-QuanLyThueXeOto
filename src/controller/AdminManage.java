@@ -14,11 +14,17 @@ public class AdminManage {
     public AdminManage(List<Admin> admins) {
         this.admins = admins;
     }
+
     public Admin isLogin(Admin admin) {
         for (Admin adm : admins) {
-            if (admin.getName().equals(adm.getName())&& admin.getPassword().equals(adm.getPassword())){
+            if (admin.getName().equals(adm.getName()) && admin.getPassword().equals(adm.getPassword())) {
                 return adm;
             }
-        }return null;
+        }
+        return null;
+    }
+
+    public void addAccount(Admin admin) {
+        admins.add(admin);
     }
 }

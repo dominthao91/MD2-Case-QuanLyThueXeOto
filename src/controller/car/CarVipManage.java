@@ -1,5 +1,6 @@
-package controller;
+package controller.car;
 
+import controller.car.IGeneralCar;
 import model.car.CarVip;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class CarVipManage implements IGeneralCar<CarVip> {
     }
 
     @Override
-    public void removeByLicensePlate(String licensePlate, CarVip carVip) {
+    public void removeByLicensePlate(String licensePlate) {
         int index = searchByLicensePlate(licensePlate);
         if (index != -1) {
             carVips.remove(index);

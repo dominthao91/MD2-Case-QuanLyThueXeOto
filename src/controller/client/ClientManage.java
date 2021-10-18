@@ -1,11 +1,12 @@
-package controller;
+package controller.client;
 
+import controller.client.IGeneralClient;
 import model.Client;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientManage implements IGeneralClient<Client>{
+public class ClientManage implements IGeneralClient<Client> {
     private List<Client>clients=new ArrayList<>();
 
     public ClientManage() {

@@ -4,6 +4,7 @@ import model.car.CarEconomy;
 import model.car.CarVip;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Bill {
     private Client client;
@@ -11,6 +12,9 @@ public class Bill {
     private CarEconomy carEconomy;
     private LocalDate checkIn;
     private LocalDate checkOut;
+    private List<Client>clients;
+    private List<CarEconomy>carEconomies;
+    private List<CarVip>carVips;
 
     public Bill() {
     }
@@ -22,8 +26,15 @@ public class Bill {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
-    public void getTotalMoney() {
 
+    public int searchClientByIdentity(String identity) {
+        int index = -1;
+        for (int i = 0; i < clients.size(); i++) {
+            if (clients.get(i).getIdentity().equals(identity)) {
+                index = i;
+            }
+        }
+        return index;
     }
 
     public LocalDate getCheckIn() {

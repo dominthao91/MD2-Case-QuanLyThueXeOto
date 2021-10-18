@@ -1,6 +1,6 @@
-package controller;
+package controller.bill;
 
-public interface IGeneralCar<T>{
+public interface IGeneralBill <T>{
     void showAll();
     void addNew(T t);
     void updateByLicensePlate(String licensePlate,T t);
