@@ -10,21 +10,47 @@ public class Bill {
     private Client client;
     private CarVip carVip;
     private CarEconomy carEconomy;
-    private LocalDate checkIn;
-    private LocalDate checkOut;
+   private double dayNumber;
+   private double totalMoneyCarVip;
+   private double totalMoneyCarEconomy;
     private List<Client>clients;
     private List<CarEconomy>carEconomies;
     private List<CarVip>carVips;
 
-    public Bill() {
+    public Bill(Client client, CarVip carVip) {
+        this.client = client;
+        this.carVip = carVip;
     }
 
-    public Bill(Client client, CarVip carVip, CarEconomy carEconomy, LocalDate checkIn, LocalDate checkOut) {
+    public Bill(String fullName, String identity, String phone, String address, String nameCar, String color, String licensePlate, double price, String status) {
+    }
+
+    public Bill(Client client, CarVip carVip, CarEconomy carEconomy, double dayNumber, double totalMoneyCarVip, double totalMoneyCarEconomy, List<Client> clients, List<CarEconomy> carEconomies, List<CarVip> carVips) {
         this.client = client;
         this.carVip = carVip;
         this.carEconomy = carEconomy;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
+        this.dayNumber = dayNumber;
+        this.totalMoneyCarVip = totalMoneyCarVip;
+        this.totalMoneyCarEconomy = totalMoneyCarEconomy;
+        this.clients = clients;
+        this.carEconomies = carEconomies;
+        this.carVips = carVips;
+    }
+
+    public double getMoneyCarVip() {
+        return totalMoneyCarVip = carVip.getPrice()*dayNumber;
+    }
+
+    public void setTotalMoneyCarVip(double totalMoneyCarVip) {
+        this.totalMoneyCarVip = totalMoneyCarVip;
+    }
+
+    public double getTotalMoneyCarEconomy() {
+        return totalMoneyCarEconomy = carEconomy.getPrice()*dayNumber;
+    }
+
+    public void setTotalMoneyCarEconomy(double totalMoneyCarEconomy) {
+        this.totalMoneyCarEconomy = totalMoneyCarEconomy;
     }
 
     public int searchClientByIdentity(String identity) {
@@ -37,21 +63,6 @@ public class Bill {
         return index;
     }
 
-    public LocalDate getCheckIn() {
-        return checkIn;
-    }
-
-    public void setCheckIn(LocalDate checkIn) {
-        this.checkIn = checkIn;
-    }
-
-    public LocalDate getCheckOut() {
-        return checkOut;
-    }
-
-    public void setCheckOut(LocalDate checkOut) {
-        this.checkOut = checkOut;
-    }
     public Client getClient() {
         return client;
     }
@@ -76,12 +87,46 @@ public class Bill {
         this.carEconomy = carEconomy;
     }
 
+    public double getDayNumber() {
+        return dayNumber;
+    }
+
+    public void setDayNumber(double dayNumber) {
+        this.dayNumber = dayNumber;
+    }
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
+    }
+
+    public List<CarEconomy> getCarEconomies() {
+        return carEconomies;
+    }
+
+    public void setCarEconomies(List<CarEconomy> carEconomies) {
+        this.carEconomies = carEconomies;
+    }
+
+    public List<CarVip> getCarVips() {
+        return carVips;
+    }
+
+    public void setCarVips(List<CarVip> carVips) {
+        this.carVips = carVips;
+    }
+
     @Override
     public String toString() {
         return "Bill{" +
                 "client=" + client +
                 ", carVip=" + carVip +
                 ", carEconomy=" + carEconomy +
+                ", dayNumber=" + dayNumber +
+                ", carVips=" + carVips +
                 '}';
     }
 }

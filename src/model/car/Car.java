@@ -1,18 +1,16 @@
 package model.car;
 
-import java.io.Serializable;
-
-public class CarEconomy extends Car implements Serializable {
+public class Car {
     private String nameCar;
     private String color;
     private String licensePlate;
     private double price;
     private boolean status;
 
-    public CarEconomy(String name, String color, String licensePlate, String price, String status) {
+    public Car() {
     }
 
-    public CarEconomy(String nameCar, String color, String licensePlate, double price, boolean status) {
+    public Car(String nameCar, String color, String licensePlate, double price, boolean status) {
         this.nameCar = nameCar;
         this.color = color;
         this.licensePlate = licensePlate;
@@ -60,4 +58,14 @@ public class CarEconomy extends Car implements Serializable {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "nameCar='" + nameCar + '\'' +
+                ", color='" + color + '\'' +
+                ", licensePlate='" + licensePlate + '\'' +
+                ", price=" + price +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

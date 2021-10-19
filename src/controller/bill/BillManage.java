@@ -15,11 +15,23 @@ public class BillManage implements IGeneralBill<Bill> {
     public BillManage(List<Bill> bills) {
         this.bills = bills;
     }
+    private double getTotalMoneyCarVip(String identity){
+        int index = searchByIdentity(identity);
+        double totalMoney = 0;
+        if (bills.get(index).getClient().getIdentity().equals(identity)){
+            totalMoney =bills.get(index).getMoneyCarVip();
+        }
+        return totalMoney;
+    }
+    public void showTotalPrice(String identity){
+        System.out.println("Số tiền khách phải trả cho xe này là : "+getTotalMoneyCarVip(identity));
+    }
 
 
-    @Override
+        @Override
     public void showAll() {
         for (Bill bill : bills) {
+
             System.out.println(bill);
         }
     }
@@ -30,8 +42,8 @@ public class BillManage implements IGeneralBill<Bill> {
     }
 
     @Override
-    public void updateByLicensePlate(String identity, Bill bill) {
-        int index = searchByLicensePlate(identity);
+    public void updateByIdentity(String identity, Bill bill) {
+        int index = searchByIdentity(identity);
         if (index != -1) {
             bills.set(index,bill);
         } else {
@@ -40,8 +52,8 @@ public class BillManage implements IGeneralBill<Bill> {
     }
 
     @Override
-    public void removeByLicensePlate(String identity, Bill bill) {
-        int index = searchByLicensePlate(identity);
+    public void removeByIdentity(String identity) {
+        int index = searchByIdentity(identity);
         if (index != -1) {
             bills.remove(index);
         } else {
@@ -51,7 +63,7 @@ public class BillManage implements IGeneralBill<Bill> {
     }
 
     @Override
-    public int searchByLicensePlate(String identity) {
+    public int searchByIdentity(String identity) {
         int index = -1;
         for (int i = 0; i < bills.size(); i++) {
             if (bills.get(i).getClient().getIdentity().equals(identity)) {

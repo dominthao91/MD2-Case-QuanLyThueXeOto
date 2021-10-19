@@ -8,19 +8,15 @@ public class Client {
     private String identity;
     private String phoneNumber;
     private String address;
-    private CarVip carVip;
-    private CarEconomy carEconomy;
 
     public Client() {
     }
 
-    public Client(String fullName, String identity, String phoneNumber, String address, CarVip carVip, CarEconomy carEconomy) {
+    public Client(String fullName, String identity, String phoneNumber, String address) {
         FullName = fullName;
         this.identity = identity;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.carVip = carVip;
-        this.carEconomy = carEconomy;
     }
 
     public String getIdentity() {
@@ -55,30 +51,13 @@ public class Client {
         this.address = address;
     }
 
-    public CarVip getCarVip() {
-        return carVip;
-    }
-
-    public void setCarVip(CarVip carVip) {
-        this.carVip = carVip;
-    }
-
-    public CarEconomy getCarEconomy() {
-        return carEconomy;
-    }
-
-    public void setCarEconomy(CarEconomy carEconomy) {
-        this.carEconomy = carEconomy;
-    }
-
     @Override
     public String toString() {
         return "Client{" +
                 "FullName='" + FullName + '\'' +
+                ", identity='" + identity + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
-                ", carVip=" + carVip +
-                ", carEconomy=" + carEconomy +
                 '}';
     }
 }
