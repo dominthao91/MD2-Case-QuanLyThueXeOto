@@ -1,16 +1,9 @@
 package view;
 
-import controller.AdminManage;
-import model.Admin;
-
 import java.util.Scanner;
 
-public class LoginMenu {
-    private AdminManage adminManage = new AdminManage();
-    ManagementMenu management = new ManagementMenu();
-
-    public void run() {
-        adminManage.addAccount(new Admin("thao8386", "t11"));
+public class MenuManager {
+    public  void runMenu(){
         int choice;
         do {
             System.out.println("  =====ỨNG DỤNG QUẢN LÝ THUÊ XE =====");
@@ -23,7 +16,7 @@ public class LoginMenu {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1: {
-                    doLogin();
+
                     break;
                 }
                 case 2:{
@@ -37,19 +30,27 @@ public class LoginMenu {
 
         } while (choice != 0);
     }
+    public void runBill(){
+        int choice;
+        do {
+            System.out.println("Hello Admin");
+            System.out.println("1. Quản lý xe");
+            System.out.println("2. Quản lý Bill");
+            System.out.println("0. Quay Lại");
+            System.out.println("Nhập lựa chọn của Bạn");
+            Scanner scanner = new Scanner(System.in);
+            choice =scanner.nextInt();
+            switch (choice){
+                case 1:{
+                    break;
+                }
+                case 2:
+                case 3:
+            }
 
-    private void doLogin() {
-        System.out.println("Đăng Nhập");
-        System.out.println("Nhập UserName");
-        Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
-        System.out.println("Nhập password");
-        String password = scanner.nextLine();
-        Admin admin = new Admin(name, password);
-        if (adminManage.isLogin(admin) != null) {
-            management.runAll();
-        } else {
-            System.err.println("Sai tài khoản hoặc mật khẩu");
-        }
+
+        }while (choice!=0);
     }
+
+
 }

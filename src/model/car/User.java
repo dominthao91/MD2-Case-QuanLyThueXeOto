@@ -1,22 +1,31 @@
-package model;
+package model.car;
 
-import model.car.CarEconomy;
-import model.car.CarVip;
+import model.bill.Bill;
 
-public class Client {
-    private String FullName;
-    private String identity;
+public class User {
+    private String fullName;
+    private  String  identity;
     private String phoneNumber;
     private String address;
 
-    public Client() {
+    public User() {
     }
 
-    public Client(String fullName, String identity, String phoneNumber, String address) {
-        FullName = fullName;
+    public User(String fullName, String identity, String phoneNumber, String address) {
+        this.fullName = fullName;
         this.identity = identity;
         this.phoneNumber = phoneNumber;
         this.address = address;
+    }
+
+
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getIdentity() {
@@ -25,14 +34,6 @@ public class Client {
 
     public void setIdentity(String identity) {
         this.identity = identity;
-    }
-
-    public String getFullName() {
-        return FullName;
-    }
-
-    public void setFullName(String fullName) {
-        FullName = fullName;
     }
 
     public String getPhoneNumber() {
@@ -53,8 +54,8 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
-                "FullName='" + FullName + '\'' +
+        return "User{" +
+                "fullName='" + fullName + '\'' +
                 ", identity='" + identity + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
