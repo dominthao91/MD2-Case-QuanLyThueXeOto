@@ -9,7 +9,6 @@ public class User implements Serializable {
     private  String  identity;
     private String phoneNumber;
     private String address;
-    private String role;
 
     public User() {
     }
@@ -19,16 +18,6 @@ public class User implements Serializable {
         this.identity = identity;
         this.phoneNumber = phoneNumber;
         this.address = address;
-      this.setRole("user");
-    }
-
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public String getFullName() {
