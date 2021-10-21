@@ -1,6 +1,8 @@
 package model.car;
 
-public class Car {
+import java.io.Serializable;
+
+public class Car implements Serializable {
     private String nameCar;
     private  String color;
     private String id;

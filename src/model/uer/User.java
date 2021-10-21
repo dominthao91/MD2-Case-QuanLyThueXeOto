@@ -1,12 +1,15 @@
-package model.car;
+package model.uer;
 
 import model.bill.Bill;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String fullName;
     private  String  identity;
     private String phoneNumber;
     private String address;
+    private String role;
 
     public User() {
     }
@@ -16,9 +19,17 @@ public class User {
         this.identity = identity;
         this.phoneNumber = phoneNumber;
         this.address = address;
+      this.setRole("user");
     }
 
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getFullName() {
         return fullName;

@@ -1,12 +1,21 @@
 package controller;
 
 import model.car.Car;
+import storage.ReadWriteFileCar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarManager implements IGeneralManager<Car> {
     private List<Car> carList = new ArrayList<>();
+    private  static CarManager carManager;
+    ReadWriteFileCar readWriteFileCar = ReadWriteFileCar.getInstance();
+    public static CarManager getInstance(){
+        if(carManager == null){
+            carManager = new CarManager();
+        }
+        return  carManager;
+    }
 
     public List<Car> getCarList() {
         return carList;
@@ -16,7 +25,7 @@ public class CarManager implements IGeneralManager<Car> {
         this.carList = carList;
     }
 
-    public CarManager() {
+    private CarManager() {
     }
 
     public CarManager(List<Car> carList) {
@@ -26,6 +35,11 @@ public class CarManager implements IGeneralManager<Car> {
     @Override
     public void addAll(Car car) {
         carList.add(car);
+       try {
+           readWriteFileCar.writeList(getCarList());
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
     }
 
     @Override
@@ -43,6 +57,11 @@ public class CarManager implements IGeneralManager<Car> {
         }else {
             System.out.println("Không tìm thấy Biển số xe này >>>.");
         }
+        try {
+            readWriteFileCar.writeList(getCarList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -54,16 +73,20 @@ public class CarManager implements IGeneralManager<Car> {
 
             System.out.println("Không tìm thấy biển số này >>.");
         }
+        try {
+            readWriteFileCar.writeList(getCarList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public int searchByLicensePlate(String licensePlate) {
-        int index = -1;
         for (int i = 0; i < carList.size(); i++) {
-            if (carList.get(i).getLicensePlate().equals(licensePlate)){
-                return i;
+            if (carList.get(i).getLicensePlate().equalsIgnoreCase(licensePlate)){
+                return carList.indexOf(carList.get(i));
             }
         }
-        return index;
+        return -1;
     }
 }

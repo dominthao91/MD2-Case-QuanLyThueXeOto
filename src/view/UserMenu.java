@@ -1,15 +1,24 @@
 package view;
 
 import controller.UserManager;
-import model.car.User;
+import model.uer.User;
+import storage.ReadWriteFileUser;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserMenu {
-     UserManager userManager = new UserManager();
+
     public void runUser(){
-        int choice;
-        do {
+        UserManager userManager = UserManager.getInstance();
+        try{
+            userManager.setUserList(ReadWriteFileUser.getInstance().readList());
+        } catch (Exception e ) {
+            e.printStackTrace();
+        }
+        int choice = -1 ;
+        while (choice!=0) {
             System.out.println("1. Thêm khách hàng");
             System.out.println("2. Hiển thị danh sách khách hàng");
             System.out.println("3. Sửa thông tin khách hàng");
@@ -21,33 +30,32 @@ public class UserMenu {
             choice = scanner.nextInt();
             switch (choice){
                 case 1:{
-                    addNewUser();
+                    addNewUser( userManager);
                     break;
                 }
                 case 2:{
-                    showUserList();
+                    showUserList(userManager);
                     break;
                 }
                 case 3:{
-                    updateUser();
+                        updateUser(userManager);
                     break;
                 }
                 case 4:{
-                    deleteUser();
+                    deleteUser(userManager);
                     break;
                 }
                 case 5:{
-                    searchUser();
+                    searchUser(userManager);
                 }
-                case 0:{
-                    System.exit(0);
-                }
+                case 0:
+
             }
 
-        }while (choice!=0);
+        }
     }
 
-    private void searchUser() {
+    private void searchUser(UserManager userManager) {
         System.out.println("5. Tìm kiếm khách hàng");
         System.out.println("Nhập CMND");
         Scanner scanner =new Scanner(System.in);
@@ -55,7 +63,7 @@ public class UserMenu {
         userManager.searchByIdentity(identity);
     }
 
-    private void deleteUser() {
+    private void deleteUser(UserManager userManager) {
         System.out.println("4. Xóa khách hàng");
         System.out.println("Nhập CMND");
         Scanner scanner =new Scanner(System.in);
@@ -63,7 +71,7 @@ public class UserMenu {
         userManager.removeByIdentity(identity);
     }
 
-    private void updateUser() {
+    private void updateUser(UserManager userManager) {
         System.out.println("3. Sửa thông tin khách hàng");
         System.out.println("Nhập CMND");
         Scanner scanner =new Scanner(System.in);
@@ -72,12 +80,12 @@ public class UserMenu {
 
     }
 
-    private void showUserList() {
-        System.out.println("2. Hiển thị danh sách khách hàng");
+    private void showUserList(UserManager userManager) {
+        System.out.println("Hiển thị danh sách khách hàng");
         userManager.showAll();
     }
 
-    private void addNewUser() {
+    private void addNewUser(UserManager userManager) {
         System.out.println("1. Thêm khách hàng");
         userManager.addAll(inputUser());
     }

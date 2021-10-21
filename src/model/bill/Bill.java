@@ -1,13 +1,14 @@
 package model.bill;
 
 import model.car.Car;
-import model.car.User;
+import model.uer.User;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
-public class Bill {
+public class Bill implements Serializable {
     private String id;
     private Car car;
     private User user;

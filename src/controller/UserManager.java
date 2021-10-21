@@ -1,18 +1,42 @@
 package controller;
 
-import model.car.User;
+import model.uer.User;
+import storage.ReadWriteFileUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserManager implements IGeneralUser<User> {
     private List<User> userList = new ArrayList<>();
-
+    ReadWriteFileUser readWriteFileUser = ReadWriteFileUser.getInstance();
     public UserManager(List<User> userList) {
         this.userList = userList;
     }
+    private  static UserManager userManager;
 
-    public UserManager() {
+    public static UserManager getInstance(){
+        if(userManager == null){
+            userManager = new UserManager();
+        }
+        return  userManager;
+    }
+    private UserManager() {
+    }
+
+    public ReadWriteFileUser getReadWriteFileUser() {
+        return readWriteFileUser;
+    }
+
+    public void setReadWriteFileUser(ReadWriteFileUser readWriteFileUser) {
+        this.readWriteFileUser = readWriteFileUser;
+    }
+
+    public static UserManager getUserManager() {
+        return userManager;
+    }
+
+    public static void setUserManager(UserManager userManager) {
+        UserManager.userManager = userManager;
     }
 
     public List<User> getUserList() {
@@ -26,6 +50,11 @@ public class UserManager implements IGeneralUser<User> {
     @Override
     public void addAll(User user) {
         userList.add(user);
+       try {
+           readWriteFileUser.writeList(userList);
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
     }
 
     @Override
@@ -43,6 +72,12 @@ public class UserManager implements IGeneralUser<User> {
         }else {
             System.out.println("Không tìm thấy Biển số xe này >>>.");
         }
+
+        try {
+            readWriteFileUser.writeList(userList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -54,16 +89,21 @@ public class UserManager implements IGeneralUser<User> {
 
             System.out.println("Không tìm thấy biển số này >>.");
         }
+        try {
+            readWriteFileUser.writeList(userList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public int searchByIdentity(String identity) {
-        int index = -1;
         for (int i = 0; i < userList.size(); i++) {
             if (userList.get(i).getIdentity().equals(identity)){
                 return i;
+
             }
         }
-        return index;
+        return -1;
     }
 }

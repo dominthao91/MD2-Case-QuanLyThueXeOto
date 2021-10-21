@@ -1,12 +1,24 @@
 package controller;
 
 import model.bill.Bill;
+import storage.ReadWriteFileBill;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BillManager implements IGeneralManager<Bill>{
     private List<Bill> billList = new ArrayList<>();
+    ReadWriteFileBill readWriteFileBill = ReadWriteFileBill.getInstance();
+    private static BillManager billManager;
+    private BillManager() {
+    }
+
+    public static BillManager getInstance(){
+        if(billManager == null){
+            billManager = new BillManager();
+        }
+        return  billManager;
+    }
 
     public List<Bill> getBillList() {
         return billList;
@@ -16,16 +28,17 @@ public class BillManager implements IGeneralManager<Bill>{
         this.billList = billList;
     }
 
-    public BillManager() {
-    }
 
-    public BillManager(List<Bill> billList) {
-        this.billList = billList;
-    }
+
 
     @Override
     public void addAll(Bill bill) {
         billList.add(bill);
+       try{
+           readWriteFileBill.writeList(getBillList());
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
     }
 
     @Override
@@ -44,6 +57,11 @@ public class BillManager implements IGeneralManager<Bill>{
         }else {
             System.out.println("Không tìm thấy Biển số xe này >>>.");
         }
+        try{
+            readWriteFileBill.writeList(getBillList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -54,6 +72,11 @@ public class BillManager implements IGeneralManager<Bill>{
         } else {
 
             System.out.println("Không tìm thấy biển số này >>.");
+        }
+        try{
+            readWriteFileBill.writeList(getBillList());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
